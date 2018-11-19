@@ -1,18 +1,33 @@
-import java.util.Random;
+import java.util.*;
 
 public class Main {
     static Random R = new Random();
-    static int count = 100;
+    static int count = 1000;
+    static HashSet<String> set = new HashSet<String>();
+    static ArrayList<String> list = new ArrayList<String>();
 
     public static void main(String[] args) {
         for (int i = 0; i < count; i++) {
             String wort = rule1();
 //            String wort = "0AZ0";
             String shorted = shortener(wort);
+            if (!set.contains(shorted)) {
+                set.add(shorted);
+            }
+            if (!list.contains(shorted)) {
+                list.add(shorted);
+            }
 //            System.out.println(rule1());
-            System.out.println(shorted);
-        }
 
+//            System.out.println(shorted);
+        }
+//        for (String aSet : set) {
+//            System.out.println(aSet);
+//        }
+        Collections.sort(list);
+        for (String i : list) {
+            System.out.println(i);
+        }
 
     }
 
@@ -25,19 +40,19 @@ public class Main {
                 String substring = wort.substring(i, i + 2);
                 if (substring.equals("AZ")) {
                     gekürzt = true;
-                   wort = wort.replace("AZ", "Z1");
+                    wort = wort.replace("AZ", "Z1");
                     break;
                 } else if (substring.equals("BZ")) {
                     gekürzt = true;
-                   wort = wort.replace("BZ", "Z0");
+                    wort = wort.replace("BZ", "Z0");
                     break;
                 } else if (substring.equals("1Z")) {
                     gekürzt = true;
-                   wort = wort.replace("1Z", "1");
+                    wort = wort.replace("1Z", "1");
                     break;
                 } else if (substring.equals("0Z")) {
                     gekürzt = true;
-                  wort =  wort.replace("0Z", "0");
+                    wort = wort.replace("0Z", "0");
                     break;
                 }
 
